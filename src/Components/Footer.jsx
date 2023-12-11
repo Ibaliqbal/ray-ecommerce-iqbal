@@ -1,5 +1,4 @@
 import React from "react";
-import { IoLogoGithub } from "react-icons/io";
 const Footer = () => {
   return (
     <footer className="w-full bg-slate-800">

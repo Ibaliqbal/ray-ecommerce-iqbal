@@ -65,7 +65,11 @@ const CartModal = ({ handleHideModalCart }) => {
                         <div className="flex items-center gap-2">
                           <h4 className="text-sm">{product.price}</h4>
                           <h3 className="text-lg font-bold">
-                            {product.totalPrice}
+                            ${" "}
+                            {product.totalPrice.toLocaleString("en-US", {
+                              styles: "currency",
+                              currency: "USD",
+                            })}
                           </h3>
                         </div>
                         <div className="flex items-center gap-4 mt-4 ml-auto">
@@ -102,7 +106,13 @@ const CartModal = ({ handleHideModalCart }) => {
             </div>
             <div>
               <h3 className="text-md font-bold">Total Item: {totalItems}</h3>
-              <h3 className="text-md font-bold">Total Price: {totalPrice}</h3>
+              <h3 className="text-md font-bold">
+                Total Price: ${" "}
+                {totalPrice.toLocaleString("en-US", {
+                  styles: "currency",
+                  currency: "USD",
+                })}
+              </h3>
             </div>
           </>
         ) : (

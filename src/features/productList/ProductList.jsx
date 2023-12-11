@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../cart/cartSlice";
-import Skeleton from "../../Components/Skeleton";
+import Skeleton from "../../components/Skeleton";
 import Rating from "../Rating";
 import { selectProduct, getProduct } from "./productListSlice";
 
@@ -49,7 +49,13 @@ const ProductList = () => {
             <div className=" flex flex-col gap-6 mt-8">
               <h3 className="h-12 font-bold">{product.title}</h3>
               <p className="h-[70px]">{product.description.slice(0, 150)}...</p>
-              <p className="text-blue-500 mt-3">{product.price}</p>
+              <p className="text-blue-500 mt-3">
+                ${" "}
+                {product.price.toLocaleString("en-US", {
+                  styles: "currency",
+                  currency: "USD",
+                })}
+              </p>
               <div className="grid gap-2 w-28">
                 <h3>Category</h3>
                 <hr />

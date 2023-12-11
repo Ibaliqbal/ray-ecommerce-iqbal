@@ -5,7 +5,7 @@ import { selectCartTotalItems } from "../features/cart/cartSlice";
 import {
   filterProduct,
   sortingProduct,
-  searchProduct
+  searchProduct,
 } from "../features/productList/productListSlice";
 import { IoIosSearch } from "react-icons/io";
 
@@ -33,11 +33,11 @@ const Header = ({ handleOpenModalCart, setSelectCategory, selectCategory }) => {
     dispatch(filterProduct("Semua"));
   }, []);
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    if(!formData.get("search") || formData.get("search").trim() === "") return
-    dispatch(searchProduct(formData.get("search")))
-  }
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    if (!formData.get("search") || formData.get("search").trim() === "") return;
+    dispatch(searchProduct(formData.get("search")));
+  };
   return (
     <header className="bg-blue-700 pb-8 pt-6">
       <div className="max-w-7xl mx-auto px-4">
@@ -98,7 +98,10 @@ const Header = ({ handleOpenModalCart, setSelectCategory, selectCategory }) => {
               <option value="Expensive Price">Expensive price</option>
             </select>
           </div>
-          <form className="relative w-full lg:w-1/3 grid gap-2" onSubmit={handleSubmit}>
+          <form
+            className="relative w-full lg:w-1/3 grid gap-2"
+            onSubmit={handleSubmit}
+          >
             <label htmlFor="search" className="font-bold text-lg text-white">
               Search
             </label>
@@ -109,7 +112,9 @@ const Header = ({ handleOpenModalCart, setSelectCategory, selectCategory }) => {
               placeholder="Some product..."
               id="search"
             />
-            <button className="text-3xl absolute top-11 right-2" type="submit"><IoIosSearch /></button>
+            <button className="text-3xl absolute top-11 right-2" type="submit">
+              <IoIosSearch />
+            </button>
           </form>
         </div>
       </div>

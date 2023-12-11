@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./Components/Header";
 import ProductList from "./features/productList/ProductList";
 import CartModal from "./features/cart/CartModal";
-import Footer from "./Components/Footer";
-
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 function App() {
   const [isOpenModalCart, setIsOpenModalCart] = useState(false);
   const [selectCategory, setSelectCategory] = useState("Semua");
