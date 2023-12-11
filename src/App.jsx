@@ -6,7 +6,7 @@ import CartModal from "./features/cart/CartModal";
 import Footer from "./Components/Footer";
 
 function App() {
-  const [isOPneModalCart, setIsOpenModalCart] = useState(false);
+  const [isOpenModalCart, setIsOpenModalCart] = useState(false);
   const [selectCategory, setSelectCategory] = useState("Semua");
   const handleOpenModalCart = () => {
     setIsOpenModalCart(true);
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      {isOPneModalCart ? (
+      {isOpenModalCart ? (
         <CartModal handleHideModalCart={handleHideModalCart} />
       ) : null}
       <Header
