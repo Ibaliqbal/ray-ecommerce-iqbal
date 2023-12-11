@@ -4,6 +4,7 @@ const initialState = {
   defaultItems: [],
   item: [],
   filterItem: [],
+  afterSearching: false,
   afterSorting: false,
   sortingItems: [],
 };
@@ -80,11 +81,27 @@ export const productListSlice = createSlice({
       }
     },
     searchProduct: (state, action) => {
+      state.afterSearching = true;
       const search = action.payload;
-      const seacrhItem = state.item.filter(item => item.title.includes(search))
-      const seacrhItems = state.defaultItems.filter(item => item.title.includes(search))
-      state.item = seacrhItem;
-      state.sortingItems = seacrhItems
+      if (state.filterItem?.length > 0) {
+        const seacrhItem = state.item.filter((item) =>
+          item.title.toLowerCase().includes(search)
+        );
+        const seacrhItems = state.defaultItems.filter((item) =>
+          item.title.toLowerCase().includes(search)
+        );
+        state.item = seacrhItem;
+        state.sortingItems = seacrhItems;
+      } else {
+        const seacrhItem = state.defaultItems.filter((item) =>
+          item.title.toLowerCase().includes(search)
+        );
+        const seacrhItems = state.defaultItems.filter((item) =>
+          item.title.toLowerCase().includes(search)
+        );
+        state.item = seacrhItem;
+        state.sortingItems = seacrhItems;
+      }
     },
   },
 });

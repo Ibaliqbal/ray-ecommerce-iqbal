@@ -37,6 +37,7 @@ const Header = ({ handleOpenModalCart }) => {
     const formData = new FormData(e.target);
     if (!formData.get("search") || formData.get("search").trim() === "") return;
     dispatch(searchProduct(formData.get("search")));
+    e.target.search.value = ""
   };
   return (
     <header className="bg-blue-700 pb-8 pt-6">
