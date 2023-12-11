@@ -2,11 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import ProductList from "./features/productList/ProductList";
 import CartModal from "./features/cart/CartModal";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 function App() {
   const [isOpenModalCart, setIsOpenModalCart] = useState(false);
-  const [selectCategory, setSelectCategory] = useState("Semua");
   const handleOpenModalCart = () => {
     setIsOpenModalCart(true);
   };
@@ -22,8 +21,6 @@ function App() {
       ) : null}
       <Header
         handleOpenModalCart={handleOpenModalCart}
-        selectCategory={selectCategory}
-        setSelectCategory={setSelectCategory}
       />
       <main className=" max-w-7xl mx-auto px-4 pb-10 pt-10">
         <ProductList />

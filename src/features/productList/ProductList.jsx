@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../cart/cartSlice";
-import Skeleton from "../../components/Skeleton";
+import Skeleton from "../../Components/Skeleton";
 import Rating from "../Rating";
 import { selectProduct, getProduct } from "./productListSlice";
 

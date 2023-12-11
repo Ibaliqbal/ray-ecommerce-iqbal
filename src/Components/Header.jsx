@@ -9,7 +9,7 @@ import {
 } from "../features/productList/productListSlice";
 import { IoIosSearch } from "react-icons/io";
 
-const Header = ({ handleOpenModalCart, setSelectCategory, selectCategory }) => {
+const Header = ({ handleOpenModalCart }) => {
   const [category, setCategory] = useState([]);
   const totalCartItem = useSelector(selectCartTotalItems);
   const dispatch = useDispatch();

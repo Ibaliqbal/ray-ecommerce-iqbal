@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
-import Modal from "../../components/Modal";
 import {
   selectCartItem,
   selectCartTotalItems,
@@ -10,6 +9,7 @@ import {
   deleteItem,
 } from "./cartSlice";
 import { useDispatch } from "react-redux";
+import Modal from "../../Components/Modal";
 
 const CartModal = ({ handleHideModalCart }) => {
   const cartItems = useSelector(selectCartItem);
