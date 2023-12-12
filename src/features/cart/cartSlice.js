@@ -60,4 +60,4 @@ export const selectCartItem = (state) => state.cart.cartItem;
 export const selectCartTotalItems = (state) =>
   state.cart.cartItem.reduce((total, item) => total + item.quantity, 0);
 export const selectCartTotalPrices = (state) =>
-  state.cart.cartItem.reduce((total, item) => total + item.price, 0);
+  state.cart.cartItem.reduce((total, item) => total + item.totalPrice, 0);

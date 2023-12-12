@@ -8,14 +8,16 @@ import {
   kurangQuantity,
   deleteItem,
 } from "./cartSlice";
+import Swal from "sweetalert2";
+import CartImage from "../../assets/cartImage.svg";
 import { useDispatch } from "react-redux";
 import Modal from "../../Components/Modal";
 
 const CartModal = ({ handleHideModalCart }) => {
   const cartItems = useSelector(selectCartItem);
   const totalItems = useSelector(selectCartTotalItems);
-  const totalPrice = useSelector(selectCartTotalPrices);
   const dispatch = useDispatch();
+  const totalPrice = useSelector(selectCartTotalPrices);
   const handleCheckoutToWhatsapp = () => {
     if (totalItems === 0) return;
 
@@ -29,11 +31,32 @@ const CartModal = ({ handleHideModalCart }) => {
     window.open(URL, "_blank");
   };
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure to remove this product?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Removed!",
+          text: "Your product has been removed.",
+          icon: "success",
+        });
+        dispatch(deleteItem(id));
+      }
+    });
+  };
+
   return (
     <Modal>
       <div className="flex flex-col gap-6 p-1: sm:p-2 w-full lg:w-[900px]">
         <div className="flex justify-between items-center h-10">
-          <h1 className="text-4xl font-bold ">Cart Product</h1>
+          <h1 className="text-xl lg:text-4xl font-bold ">Cart Product</h1>
           <button
             className="w-6 h-6 bg-red-600 rounded-full text-white"
             onClick={handleHideModalCart}
@@ -94,7 +117,7 @@ const CartModal = ({ handleHideModalCart }) => {
                         <button
                           type="button"
                           className="font-bold bg-red-600 w-6 h-6 rounded-full flex items-center justify-center text-white"
-                          onClick={() => dispatch(deleteItem(product.id))}
+                          onClick={() => handleDelete(product.id)}
                         >
                           X
                         </button>
@@ -116,7 +139,17 @@ const CartModal = ({ handleHideModalCart }) => {
             </div>
           </>
         ) : (
-          <h3 className="font-bold text-2xl">No Product</h3>
+          <div className="flex flex-col items-center gap-4">
+            <img
+              src={CartImage}
+              alt="CartImage"
+              width={"150px"}
+              height={"150px"}
+            />
+            <h1 className="text-lg font-bold text-slate-600 lg:text-2xl">
+              No product in your cart
+            </h1>
+          </div>
         )}
         <div className="flex items-center gap-6 justify-end">
           <button

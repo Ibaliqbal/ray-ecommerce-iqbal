@@ -47,35 +47,40 @@ const ProductList = () => {
               />
             </div>
             <div className=" flex flex-col gap-6 mt-8">
-              <h3 className="h-12 font-bold">{product.title}</h3>
+              <h1 className="h-12 font-bold">{product.title}</h1>
               <p className="h-[70px]">{product.description.slice(0, 150)}...</p>
-              <p className="text-blue-500 mt-3">
-                ${" "}
-                {product.price.toLocaleString("en-US", {
-                  styles: "currency",
-                  currency: "USD",
-                })}
-              </p>
-              <div className="grid gap-2 w-28">
+              <div className="grid gap-2 w-28 mt-3">
                 <h3>Category</h3>
                 <hr />
                 <p>{product.category}</p>
               </div>
-              <div className="grid gap-2 w-32">
+              <div className="inline-flex flex-col gap-2">
                 <h3>Ratings</h3>
                 <hr />
                 <div className="flex items-center gap-2">
                   <Rating rating={product.rating.rate} /> {"|"}
-                  <span className="text-lg">{product.rating.count}</span>
+                  <span className="text-lg">
+                    {product.rating.count} Sold Out
+                  </span>
                 </div>
               </div>
-              <button
-                type="buttton"
-                className="bg-blue-700 text-white hover:bg-blue-800 rounded-lg text-sm py-3 px-8"
-                onClick={() => handleAddItemToCart(product)}
-              >
-                BUY NOW
-              </button>
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  className="bg-blue-700 text-white hover:bg-blue-800 rounded-lg text-sm py-3 px-8"
+                  onClick={() => handleAddItemToCart(product)}
+                >
+                  BUY NOW
+                </button>
+                <h3 className="text-2xl text-green-500">
+                  {" "}
+                  ${" "}
+                  {product.price.toLocaleString("en-US", {
+                    styles: "currency",
+                    currency: "USD",
+                  })}
+                </h3>
+              </div>
             </div>
           </div>
         ))

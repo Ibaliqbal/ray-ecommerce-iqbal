@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   defaultItems: [],
   item: [],
+  searchingItems: [],
   filterItem: [],
   afterSearching: false,
   afterSorting: false,
@@ -25,6 +26,8 @@ export const productListSlice = createSlice({
         state.item = state.defaultItems;
         state.filterItem = state.item;
         console.log(state.filterItem);
+        if (state.searchingItems.length > 0) {
+        }
       } else {
         if (!state.afterSorting) {
           const filteCategoryProduct = state.defaultItems.filter(
@@ -83,24 +86,29 @@ export const productListSlice = createSlice({
     searchProduct: (state, action) => {
       state.afterSearching = true;
       const search = action.payload;
-      if (state.filterItem?.length > 0) {
-        const seacrhItem = state.item.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
-        const seacrhItems = state.defaultItems.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
-        state.item = seacrhItem;
-        state.sortingItems = seacrhItems;
+      if (search === " ") {
+        state.item = state.defaultItems;
+        state.searchingItems = state.item;
       } else {
-        const seacrhItem = state.defaultItems.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
-        const seacrhItems = state.defaultItems.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
-        state.item = seacrhItem;
-        state.sortingItems = seacrhItems;
+        if (state.filterItem?.length > 0) {
+          const seacrhItem = state.item.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          const seacrhItems = state.defaultItems.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          state.item = seacrhItem;
+          state.sortingItems = seacrhItems;
+        } else {
+          const seacrhItem = state.defaultItems.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          const seacrhItems = state.defaultItems.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          state.item = seacrhItem;
+          state.sortingItems = seacrhItems;
+        }
       }
     },
   },

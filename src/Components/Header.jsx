@@ -30,13 +30,12 @@ const Header = ({ handleOpenModalCart }) => {
       }
     };
     fetchData();
-    dispatch(filterProduct("Semua"));
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     if (!formData.get("search") || formData.get("search").trim() === "") return;
-    dispatch(searchProduct(formData.get("search")));
+    dispatch(searchProduct(formData.get("search").toLocaleLowerCase()));
     e.target.search.value = ""
   };
   return (
@@ -70,6 +69,7 @@ const Header = ({ handleOpenModalCart }) => {
               className="p-3 w-full rounded-lg cursor-pointer"
               onChange={(e) => dispatch(filterProduct(e.target.value))}
             >
+              <option value="Select Categories" hidden>Select Categories</option>
               <option value="Semua">Semua</option>
               {category?.map((item, i) => {
                 return (
@@ -112,9 +112,10 @@ const Header = ({ handleOpenModalCart }) => {
               className="p-3 rounded-md"
               placeholder="Some product..."
               id="search"
+              onChange={(e) => dispatch(searchProduct(e.target.value.toLocaleLowerCase()))}
             />
             <button className="text-3xl absolute top-11 right-2" type="submit">
-              <IoIosSearch />
+              <IoIosSearch aria-label="search"/>
             </button>
           </form>
         </div>
