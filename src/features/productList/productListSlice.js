@@ -5,7 +5,7 @@ const initialState = {
   item: [],
   searchingItems: [],
   filterItem: [],
-  afterSearching: false,
+  afterFilter: false,
   afterSorting: false,
   sortingItems: [],
 };
@@ -21,6 +21,7 @@ export const productListSlice = createSlice({
     },
     filterProduct: (state, action) => {
       const filter = action.payload;
+      state.afterFilter = true;
       console.log(filter);
       if (filter === "Semua") {
         if (state.searchingItems.length > 0) {
@@ -90,34 +91,29 @@ export const productListSlice = createSlice({
       state.afterSearching = true;
       const search = action.payload;
       console.log(search);
-      if (search === " ") {
-        state.item = state.defaultItems;
-        state.searchingItems = state.item;
+      if (state.filterItem.length > 0) {
+        console.log("tombol filter sudah dipilih");
+        if (search === " ") {
+          state.item = state.filterItem;
+          state.searchingItems = state.item;
+        } else {
+          const searchItems = state.filterItem.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          state.searchingItems = searchItems;
+          state.item = searchItems;
+        }
       } else {
-        const searchItems = state.defaultItems.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
-        state.searchingItems = searchItems;
-        state.item = searchItems;
-        // if (state.filterItem?.length > 0) {
-        //   const seacrhItem = state.item.filter((item) =>
-        //     item.title.toLowerCase().includes(search)
-        //   );
-        //   const seacrhItems = state.defaultItems.filter((item) =>
-        //     item.title.toLowerCase().includes(search)
-        //   );
-        //   state.item = seacrhItem;
-        //   state.sortingItems = seacrhItems;
-        // } else {
-        //   const seacrhItem = state.defaultItems.filter((item) =>
-        //     item.title.toLowerCase().includes(search)
-        //   );
-        //   const seacrhItems = state.defaultItems.filter((item) =>
-        //     item.title.toLowerCase().includes(search)
-        //   );
-        //   state.item = seacrhItem;
-        //   state.sortingItems = seacrhItems;
-        // }
+        if (search === " ") {
+          state.item = state.defaultItems;
+          state.searchingItems = state.item;
+        } else {
+          const searchItems = state.defaultItems.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+          state.searchingItems = searchItems;
+          state.item = searchItems;
+        }
       }
     },
   },

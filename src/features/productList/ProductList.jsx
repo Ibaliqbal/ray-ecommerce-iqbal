@@ -46,6 +46,10 @@ const ProductList = () => {
                 className="w-full h-full object-contain group-hover:scale-105 transition-scale duration-300 ease-in-out"
               />
             </div>
+            <div className="flex items-center w-full justify-between mt-8">
+              <Rating rating={product.rating.rate} />
+              <span className="text-lg">{product.rating.count} Reviews</span>
+            </div>
             <div className=" flex flex-col gap-6 mt-8">
               <h1 className="h-12 font-bold">{product.title}</h1>
               <p className="h-[70px]">{product.description.slice(0, 150)}...</p>
@@ -53,16 +57,6 @@ const ProductList = () => {
                 <h3>Category</h3>
                 <hr />
                 <p>{product.category}</p>
-              </div>
-              <div className="inline-flex flex-col gap-2">
-                <h3>Ratings</h3>
-                <hr />
-                <div className="flex items-center gap-2">
-                  <Rating rating={product.rating.rate} /> {"|"}
-                  <span className="text-lg">
-                    {product.rating.count} Reviews
-                  </span>
-                </div>
               </div>
               <div className="flex items-center justify-between">
                 <button
