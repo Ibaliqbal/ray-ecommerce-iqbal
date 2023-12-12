@@ -143,8 +143,8 @@ const CartModal = ({ handleHideModalCart }) => {
             <img
               src={CartImage}
               alt="CartImage"
-              width={"150px"}
-              height={"150px"}
+              width={"300px"}
+              height={"300px"}
             />
             <h1 className="text-lg font-bold text-slate-600 lg:text-2xl">
               No product in your cart

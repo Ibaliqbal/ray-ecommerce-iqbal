@@ -4,6 +4,7 @@ import { addItemToCart } from "../cart/cartSlice";
 import Skeleton from "../../Components/Skeleton";
 import Rating from "../Rating";
 import { selectProduct, getProduct } from "./productListSlice";
+import NotFoundImage from "../../assets/notFoundImage.svg";
 
 const ProductList = () => {
   const products = useSelector(selectProduct);
@@ -30,7 +31,7 @@ const ProductList = () => {
     dispatch(addItemToCart(item));
   };
   return (
-    <div className="w-full h-full lg:grid-cols-3 place-items-center md:grid-cols-2 grid gap-3 py-4">
+    <div className="w-full h-full lg:grid-cols-3 place-items-center lg:place-items-center md:grid-cols-2 grid gap-3 py-4">
       {isLoading ? (
         [...Array(10).keys()].map((_, i) => <Skeleton key={i} />)
       ) : products.length > 0 ? (
@@ -79,7 +80,10 @@ const ProductList = () => {
           </div>
         ))
       ) : (
-        <h1 className="font-bold text-xl">Products Not Found</h1>
+        <div className="grid place-items-center items-center gap-4 p-4 col-span-3">
+          <img src={NotFoundImage} alt="not found" />
+          <h1 className="font-bold text-3xl">Products Not Found</h1>
+        </div>
       )}
     </div>
   );

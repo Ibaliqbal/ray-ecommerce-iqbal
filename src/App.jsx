@@ -23,7 +23,7 @@ function App() {
       <Header
         handleOpenModalCart={handleOpenModalCart}
       />
-      <main className=" max-w-7xl mx-auto px-4 pb-10 pt-10">
+      <main className=" max-w-7xl mx-auto px-4 pb-10 pt-10 z-[1] relative">
         <ProductList />
       </main>
       <Footer />
