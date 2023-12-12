@@ -4,7 +4,9 @@ const initialState = {
   defaultItems: [],
   item: [],
   searchingItems: [],
+  searchPayload: "",
   filterItem: [],
+  afterSearching: false,
   afterFilter: false,
   afterSorting: false,
   sortingItems: [],
@@ -22,31 +24,48 @@ export const productListSlice = createSlice({
     filterProduct: (state, action) => {
       const filter = action.payload;
       state.afterFilter = true;
-      console.log(filter);
       if (filter === "Semua") {
-        if (state.searchingItems.length > 0) {
-          state.item = state.defaultItems;
-          state.filterItem = state.item;
-          console.log(state.filterItem);
-        }
         state.item = state.defaultItems;
         state.filterItem = state.item;
-        console.log(state.filterItem);
+        if (!state.afterSearching) {
+          state.item = state.defaultItems;
+          state.filterItem = state.item;
+        } else {
+          const productFilter = state.defaultItems.filter((item) =>
+            item.title.toLowerCase().includes(state.searchPayload)
+          );
+          state.item = productFilter;
+          state.filterItem = state.defaultItems;
+        }
       } else {
         if (!state.afterSorting) {
           const filteCategoryProduct = state.defaultItems.filter(
             (item) => item.category === filter
           );
-          state.filterItem = filteCategoryProduct;
-          state.item = filteCategoryProduct;
-          console.log(state.filterItem);
+          if (!state.afterSearching) {
+            state.filterItem = filteCategoryProduct;
+            state.item = filteCategoryProduct;
+          } else {
+            const productFilter = filteCategoryProduct.filter((item) =>
+              item.title.toLowerCase().includes(state.searchPayload)
+            );
+            state.item = productFilter;
+            state.filterItem = filteCategoryProduct;
+          }
         } else {
           const filteCategoryProduct = state.sortingItems.filter(
             (item) => item.category === filter
           );
-          state.filterItem = filteCategoryProduct;
-          state.item = filteCategoryProduct;
-          console.log(state.filterItem);
+          if (!state.afterSearching) {
+            state.filterItem = filteCategoryProduct;
+            state.item = filteCategoryProduct;
+          } else {
+            const productFilter = filteCategoryProduct.filter((item) =>
+              item.title.toLowerCase().includes(state.searchPayload)
+            );
+            state.item = productFilter;
+            state.filterItem = filteCategoryProduct;
+          }
         }
       }
     },
@@ -90,7 +109,7 @@ export const productListSlice = createSlice({
     searchProduct: (state, action) => {
       state.afterSearching = true;
       const search = action.payload;
-      console.log(search);
+      state.searchPayload = action.payload;
       if (state.filterItem.length > 0) {
         console.log("tombol filter sudah dipilih");
         if (search === " ") {
