@@ -60,7 +60,7 @@ const ProductList = () => {
                 <div className="flex items-center gap-2">
                   <Rating rating={product.rating.rate} /> {"|"}
                   <span className="text-lg">
-                    {product.rating.count} Sold Out
+                    {product.rating.count} Reviews
                   </span>
                 </div>
               </div>

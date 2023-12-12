@@ -6,6 +6,10 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.title-header {
+  font-family: italic;
+}
+
 .slide-in {
-  @apply fixed top-0 left-0 w-full h-[100vh] origin-bottom bg-blue-700;
+  @apply fixed top-0 left-0 w-full h-[100vh] origin-top bg-blue-700;
 }

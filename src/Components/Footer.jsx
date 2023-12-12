@@ -10,7 +10,9 @@ const Footer = () => {
               Iqbal Muthahhary
             </a>
           </h3>
-          <p>Make it with ❤️</p>
+          <p>
+            Make it with <span className="animate-pulse">❤️</span>
+          </p>
         </div>
       </div>
     </footer>

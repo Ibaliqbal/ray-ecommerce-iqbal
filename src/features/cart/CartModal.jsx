@@ -58,7 +58,7 @@ const CartModal = ({ handleHideModalCart }) => {
         <div className="flex justify-between items-center h-10">
           <h1 className="text-xl lg:text-4xl font-bold ">Cart Product</h1>
           <button
-            className="w-6 h-6 bg-red-600 rounded-full text-white"
+            className="w-12 h-12 bg-red-600 rounded-full text-xl font-bold text-white"
             onClick={handleHideModalCart}
           >
             X
@@ -98,7 +98,7 @@ const CartModal = ({ handleHideModalCart }) => {
                         <div className="flex items-center gap-4 mt-4 ml-auto">
                           <button
                             type="button"
-                            className="rounded-full bg-blue-400 w-5 h-5 text-white flex items-center justify-center"
+                            className="rounded-full bg-red-600 w-7 h-7 text-3xl text-white flex items-center justify-center"
                             onClick={() => dispatch(kurangQuantity(product))}
                           >
                             -
@@ -106,7 +106,7 @@ const CartModal = ({ handleHideModalCart }) => {
                           <h3>{product.quantity}</h3>
                           <button
                             type="button"
-                            className="rounded-full bg-blue-400 w-5 h-5 text-white flex items-center justify-center"
+                            className="rounded-full bg-blue-600 w-7 h-7 text-white flex items-center justify-center"
                             onClick={() => dispatch(tambahQuantity(product))}
                           >
                             +
@@ -116,7 +116,7 @@ const CartModal = ({ handleHideModalCart }) => {
                       <div className="w-[50px] h-auto">
                         <button
                           type="button"
-                          className="font-bold bg-red-600 w-6 h-6 rounded-full flex items-center justify-center text-white"
+                          className="font-bold bg-red-600 w-10 h-10 rounded-full flex items-center justify-center text-white"
                           onClick={() => handleDelete(product.id)}
                         >
                           X
