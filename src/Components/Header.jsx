@@ -30,6 +30,7 @@ const Header = ({ handleOpenModalCart }) => {
       }
     };
     fetchData();
+    dispatch(filterProduct("Semua"))
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
