@@ -80,7 +80,7 @@ const ProductList = () => {
           </div>
         ))
       ) : (
-        <div className="grid place-items-center items-center gap-4 p-4 col-span-3">
+        <div className="grid place-items-center lg:mt-5 items-center gap-4 p-4 col-span-3">
           <img src={NotFoundImage} alt="not found" />
           <h1 className="font-bold text-3xl">Products Not Found</h1>
         </div>
