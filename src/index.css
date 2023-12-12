@@ -5,3 +5,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+.slide-in {
+  @apply fixed top-0 left-0 w-full h-[100vh] origin-bottom bg-blue-700;
+}

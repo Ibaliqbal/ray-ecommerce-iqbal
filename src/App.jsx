@@ -4,6 +4,7 @@ import ProductList from "./features/productList/ProductList";
 import CartModal from "./features/cart/CartModal";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import transition from "./Components/transition";
 function App() {
   const [isOpenModalCart, setIsOpenModalCart] = useState(false);
   const handleOpenModalCart = () => {
@@ -30,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default transition(App);
