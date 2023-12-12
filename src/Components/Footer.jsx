@@ -6,7 +6,10 @@ const Footer = () => {
         <div className="w-full text-white flex items-center justify-center gap-4 p-4">
           <h1>Developer</h1>
           <h3>
-            <a href="" target="_blank">
+            <a
+              href="https://instagram.com/muthahhary_iqbal?igshid=NGVhN2U2NjQ0Yg=="
+              target="_blank"
+            >
               Iqbal Muthahhary
             </a>
           </h3>
