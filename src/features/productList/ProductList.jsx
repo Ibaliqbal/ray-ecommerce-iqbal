@@ -95,7 +95,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
             <div className="lg:w-1/3 w-full grid gap-2">
               <label
                 htmlFor="category"
-                className="font-bold text-lg text-white"
+                className="font-bold text-lg text-slate-700"
               >
                 Category Product
               </label>
@@ -121,7 +121,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
               </select>
             </div>
             <div className="lg:w-1/3 w-full grid gap-2">
-              <label htmlFor="sorting" className="font-bold text-lg text-white">
+              <label htmlFor="sorting" className="font-bold text-lg text-slate-700">
                 Sorting Product
               </label>
               <select
@@ -143,7 +143,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
               className="relative w-full lg:w-1/3 grid gap-2"
               onSubmit={handleSubmit}
             >
-              <label htmlFor="search" className="font-bold text-lg text-white">
+              <label htmlFor="search" className="font-bold text-lg text-slate-700">
                 Search
               </label>
               <input
