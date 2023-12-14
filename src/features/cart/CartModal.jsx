@@ -91,7 +91,7 @@ const CartModal = ({ handleHideModalCart, isOpenModalCart }) => {
                         checked={product.checked}
                         onChange={() => dispatch(checkedItem(product.id))}
                       />
-                      <div className="w-[120px] h-auto overflow-hidden">
+                      <div className="w-[100px] h-auto overflow-hidden">
                         <img
                           src={product.image}
                           alt={product.title}
@@ -99,7 +99,7 @@ const CartModal = ({ handleHideModalCart, isOpenModalCart }) => {
                         />
                       </div>
                       <div className="ml-10 w-[75%]">
-                        <h3 className="capitalize mt-3 text-lg">
+                        <h3 className="capitalize mt-3 text-sm">
                           {product.title}
                         </h3>
                         <div className="flex items-center gap-2">
