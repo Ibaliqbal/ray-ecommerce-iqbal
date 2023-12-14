@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  font-family: "Poppins", sans-serif;
+html {
+  @apply scroll-smooth;
 }
-
-/* .title-header {
-  font-family: italic;
-} */
 
 .scale-up-tl {
   animation: scale-up-tl 0.7s ease-in-out both;
@@ -43,26 +38,4 @@ body {
 
 .slide-in {
   @apply fixed top-0 left-0 w-full h-[100vh] origin-bottom z-10 bg-blue-700;
-}
-
-.custom-shape-divider-bottom-1702548058 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1702548058 svg {
-  position: relative;
-  display: block;
-  width: calc(166% + 1.3px);
-  height: 101px;
-  transform: rotateY(180deg);
-}
-
-.custom-shape-divider-bottom-1702548058 .shape-fill {
-  fill: #1e293b;
 }

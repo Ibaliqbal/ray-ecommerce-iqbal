@@ -2,10 +2,10 @@ import Cart from "../assets/cart.svg";
 import { useSelector } from "react-redux";
 import { selectCartItem } from "../features/cart/cartSlice";
 
-const Header = ({ handleOpenModalCart }) => {
+const Header = ({ handleOpenModalCart, headerRef }) => {
   const totalCartItem = useSelector(selectCartItem);
   return (
-    <header className="bg-blue-700 pb-8 pt-6 relative">
+    <header className="bg-blue-700 pb-8 pt-6 relative top-0 left-0" ref={headerRef}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-auto">
           <h1 className="text-3xl font-bold text-gray-100 title-header">
