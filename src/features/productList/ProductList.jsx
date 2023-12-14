@@ -205,11 +205,11 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
               <div className=" flex flex-col gap-6 mt-5">
                 <h1 className="h-[80px] font-bold text-lg">{product.title}</h1>
                 <div className="grid gap-2 w-40 mt-3">
-                  <h3>Category</h3>
+                  <h1>Category</h1>
                   <hr className="bg-black h-[2px]" />
                   <p className="capitalize  ">{product.category}</p>
                 </div>
-                <p className="text-2xl text-green-500">
+                <p className="text-2xl text-black">
                   {" "}
                   ${" "}
                   {product.price.toLocaleString("en-US", {
