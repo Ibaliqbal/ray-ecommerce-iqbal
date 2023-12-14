@@ -7,13 +7,14 @@ import {
   tambahQuantity,
   kurangQuantity,
   deleteItem,
+  checkedItem,
 } from "./cartSlice";
 import Swal from "sweetalert2";
 import CartImage from "../../assets/cartImage.svg";
 import { useDispatch } from "react-redux";
 import Modal from "../../Components/Modal";
 
-const CartModal = ({ handleHideModalCart }) => {
+const CartModal = ({ handleHideModalCart, isOpenModalCart }) => {
   const cartItems = useSelector(selectCartItem);
   const totalItems = useSelector(selectCartTotalItems);
   const dispatch = useDispatch();
@@ -22,15 +23,23 @@ const CartModal = ({ handleHideModalCart }) => {
     if (totalItems === 0) return;
 
     const phoneNumber = "6281285241889";
+    const barang = cartItems.filter(item => item.checked === true)
+    const harga = totalPrice * 15500;
     const message = encodeURIComponent(
-      `Halo, saya ingin membeli ${totalItems} barang dengan total harga ${totalPrice}`
+      `Halo, saya ingin membeli 
+      Nama barang : ${barang.map((item) => item.title).join(", ")},
+      Kode barang : ${barang.map((item) => item.id).join(", ")},
+      Total barang : ${totalItems},
+      Harga Barang : ${harga.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      })}`
     );
 
     const URL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
 
     window.open(URL, "_blank");
   };
-
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure to remove this product?",
@@ -39,7 +48,7 @@ const CartModal = ({ handleHideModalCart }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -53,8 +62,8 @@ const CartModal = ({ handleHideModalCart }) => {
   };
 
   return (
-    <Modal>
-      <div className="flex flex-col gap-6 p-1: sm:p-2 w-full lg:w-[900px]">
+    <Modal isOpen={isOpenModalCart}>
+      <div className="flex flex-col gap-6 p-1 sm:p-2 w-full lg:w-[900px]">
         <div className="flex justify-between items-center h-10">
           <h1 className="text-xl lg:text-4xl font-bold ">Cart Product</h1>
           <button
@@ -74,6 +83,14 @@ const CartModal = ({ handleHideModalCart }) => {
                     key={product.id}
                   >
                     <div className="flex items-center w-full">
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        className="mr-5 w-7 h-7"
+                        checked={product.checked}
+                        onChange={() => dispatch(checkedItem(product.id))}
+                      />
                       <div className="w-[120px] h-auto overflow-hidden">
                         <img
                           src={product.image}
@@ -127,16 +144,6 @@ const CartModal = ({ handleHideModalCart }) => {
                 );
               })}
             </div>
-            <div>
-              <h3 className="text-md font-bold">Total Item: {totalItems}</h3>
-              <h3 className="text-md font-bold">
-                Total Price: ${" "}
-                {totalPrice.toLocaleString("en-US", {
-                  styles: "currency",
-                  currency: "USD",
-                })}
-              </h3>
-            </div>
           </>
         ) : (
           <div className="flex flex-col items-center gap-4">
@@ -151,13 +158,23 @@ const CartModal = ({ handleHideModalCart }) => {
             </h1>
           </div>
         )}
-        <div className="flex items-center gap-6 justify-end">
+        <div className="flex items-center gap-6 w-full flex-col lg:flex-row">
+          <div className="w-full lg:w-1/2 flex items-center justify-between py-3 px-8">
+            <h3 className="text-lg font-bold">Total Item: {totalItems}</h3>
+            <h3 className="text-lg font-bold">
+              Total Price: ${" "}
+              {totalPrice.toLocaleString("en-US", {
+                styles: "currency",
+                currency: "USD",
+              })}
+            </h3>
+          </div>
           <button
             type="button"
-            className={`bg-green-600 hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-xl text-sm ${
-              cartItems?.length > 0
-                ? "cursor-pointer bg-opacity-100"
-                : "bg-opacity-50 cursor-not-allowed"
+            className={`bg-green-600 w-full lg:w-1/2 text-white font-bold py-3 px-8 rounded-xl text-sm ${
+              cartItems?.find((item) => item.checked === true)
+                ? "cursor-pointer bg-opacity-100 hover:bg-green-700"
+                : "bg-opacity-50 cursor-not-allowed hover:bg-slate-800"
             }`}
             disabled={cartItems.length > 0 ? false : true}
             onClick={handleCheckoutToWhatsapp}

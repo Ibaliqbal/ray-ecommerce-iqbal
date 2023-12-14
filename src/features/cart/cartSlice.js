@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItem: [],
+  totalItem: 0,
+  totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -22,6 +24,7 @@ export const cartSlice = createSlice({
           ...newItem,
           quantity: 1,
           totalPrice: newItem.price,
+          checked: false,
         });
       }
     },
@@ -34,30 +37,48 @@ export const cartSlice = createSlice({
     },
     kurangQuantity: ({ cartItem }, { payload }) => {
       const findProduct = cartItem.find((item) => item.id === payload.id);
-      const findIndexProduct = cartItem.findIndex(item => item.id === payload.id)
+      const findIndexProduct = cartItem.findIndex(
+        (item) => item.id === payload.id
+      );
       if (findProduct) {
         if (findProduct.quantity === 1) {
-          cartItem.splice(findIndexProduct, 1)
+          cartItem.splice(findIndexProduct, 1);
         } else {
           findProduct.quantity--;
           findProduct.totalPrice = findProduct.quantity * findProduct.price;
         }
       }
     },
-    deleteItem: ({cartItem}, {payload}) => {
+    deleteItem: ({ cartItem }, { payload }) => {
       const findIndexProduct = cartItem.findIndex(
         (item) => item.id === payload
       );
-      cartItem.splice(findIndexProduct, 1)
-    }
+      cartItem.splice(findIndexProduct, 1);
+    },
+    checkedItem: (state, { payload }) => {
+      const findIndexProduct = state.cartItem.findIndex(
+        (item) => item.id === payload
+      );
+      state.cartItem[findIndexProduct].checked =
+        !state.cartItem[findIndexProduct].checked;
+    },
   },
 });
 
-export const { addItemToCart, tambahQuantity, kurangQuantity, deleteItem } =
-  cartSlice.actions;
+export const {
+  addItemToCart,
+  tambahQuantity,
+  kurangQuantity,
+  deleteItem,
+  checkedItem,
+} = cartSlice.actions;
 export default cartSlice;
 export const selectCartItem = (state) => state.cart.cartItem;
 export const selectCartTotalItems = (state) =>
-  state.cart.cartItem.reduce((total, item) => total + item.quantity, 0);
+  state.cart.cartItem
+    .filter((item) => item.checked === true)
+    .reduce((sum, item) => sum + item.quantity, 0);
 export const selectCartTotalPrices = (state) =>
-  state.cart.cartItem.reduce((total, item) => total + item.totalPrice, 0);
+  state.cart.cartItem
+    .filter((item) => item.checked === true)
+    .reduce((sum, item) => sum + item.totalPrice, 0);

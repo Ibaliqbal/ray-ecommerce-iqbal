@@ -7,10 +7,10 @@ const BackdropOverlay = () => {
   );
 };
 
-const ModalOverlay = ({ children }) => {
+const ModalOverlay = ({ children, isOpen }) => {
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-30">
-      <div className="bg-white p-4 rounded-lg shadow-lg text-gray-900 mx-2">
+      <div className={`bg-white p-4 rounded-lg shadow-lg text-gray-900 mx-2 scale-up-tl`}>
         {children}
       </div>
     </div>
@@ -19,12 +19,12 @@ const ModalOverlay = ({ children }) => {
 
 const portalElement = document.getElementById("modal");
 
-const Modal = ({ children }) => {
+const Modal = ({ children, isOpen }) => {
   return (
     <>
       {ReactDOM.createPortal(<BackdropOverlay />, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
+        <ModalOverlay isOpen={isOpen}>{children}</ModalOverlay>,
         portalElement
       )}
     </>

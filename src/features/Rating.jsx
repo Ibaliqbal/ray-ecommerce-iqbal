@@ -6,7 +6,7 @@ const Rating = ({ rating }) => {
     starElements.push(<IoIosStar key={i} className="text-yellow-400" />);
   }
   return (
-    <span className="text-lg inline-flex items-center gap-1">{starElements} {rating}</span>
+    <span className="text-sm inline-flex bg-yellow-100 p-2 rounded-full items-center gap-1">{starElements} {rating}</span>
   );
 };
 

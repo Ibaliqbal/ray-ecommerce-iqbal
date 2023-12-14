@@ -10,6 +10,7 @@ const initialState = {
   afterFilter: false,
   afterSorting: false,
   sortingItems: [],
+  buyProduct: [],
 };
 
 export const productListSlice = createSlice({
@@ -24,7 +25,7 @@ export const productListSlice = createSlice({
     filterProduct: (state, action) => {
       const filter = action.payload;
       state.afterFilter = true;
-      if (filter === "Semua") {
+      if (filter === "all categories") {
         state.item = state.defaultItems;
         state.filterItem = state.item;
         if (!state.afterSearching) {
@@ -135,10 +136,36 @@ export const productListSlice = createSlice({
         }
       }
     },
+    getBuyProduct: (state, action) => {
+      const id = action.payload;
+      const getProduct = state.item.find((item) => item.id === id);
+      state.buyProduct = { ...getProduct, quantity: 1 };
+    },
+    updateQuantity: (state, action) => {
+      if (action.payload === "increment") {
+        state.buyProduct.quantity++;
+      } else {
+        if (state.buyProduct.quantity === 1) {
+          state.buyProduct.quantity = 1;
+        } else {
+          state.buyProduct.quantity--;
+        }
+      }
+    },
   },
 });
 
-export const { getProduct, filterProduct, sortingProduct, searchProduct } =
-  productListSlice.actions;
+export const {
+  getProduct,
+  filterProduct,
+  sortingProduct,
+  searchProduct,
+  getBuyProduct,
+  updateQuantity,
+} = productListSlice.actions;
 export default productListSlice;
 export const selectProduct = (state) => state.product.item;
+export const selectBuyProduct = (state) => state.product.buyProduct;
+export const totalBuyItem = (state) => state.product.buyProduct.quantity;
+export const totalPriceItem = (state) =>
+  state.product.buyProduct.quantity * state.product.buyProduct.price;
