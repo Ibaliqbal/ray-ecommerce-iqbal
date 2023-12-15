@@ -45,11 +45,11 @@ const BuyProductModal = ({ handleHideModalBuyProduct, isOpenBuy }) => {
           </button>
         </div>
         <div className="w-full flex flex-col items-center gap-3">
-          <div className="w-[150px] h-auto overflow-hidden">
+          <div className="w-[120px] h-[120px] overflow-hidden">
             <img
               src={buyProduct.image}
               alt="Product"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <h1 className="text-xl font-bold">{buyProduct.title}</h1>
