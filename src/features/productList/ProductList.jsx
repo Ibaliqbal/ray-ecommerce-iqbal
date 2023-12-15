@@ -15,6 +15,7 @@ import { useToast } from "@chakra-ui/react";
 import NotFoundImage from "../../assets/notFoundImage.svg";
 import { IoIosSearch, IoIosEye, IoIosHeart } from "react-icons/io";
 import { getDetail } from "./detailProductSlice";
+import { motion } from "framer-motion";
 const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
   const products = useSelector(selectProduct);
   const [category, setCategory] = useState([]);
@@ -95,7 +96,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
             <div className="lg:w-1/3 w-full grid gap-2">
               <label
                 htmlFor="category"
-                className="font-bold text-lg text-slate-700"
+                className="font-bold text-lg text-black"
               >
                 Category Product
               </label>
@@ -121,7 +122,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
               </select>
             </div>
             <div className="lg:w-1/3 w-full grid gap-2">
-              <label htmlFor="sorting" className="font-bold text-lg text-slate-700">
+              <label htmlFor="sorting" className="font-bold text-lg text-black">
                 Sorting Product
               </label>
               <select
@@ -143,7 +144,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
               className="relative w-full lg:w-1/3 grid gap-2"
               onSubmit={handleSubmit}
             >
-              <label htmlFor="search" className="font-bold text-lg text-slate-700">
+              <label htmlFor="search" className="font-bold text-lg text-black">
                 Search
               </label>
               <input
@@ -171,9 +172,12 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
           [...Array(20).keys()].map((_, i) => <Skeleton key={i} />)
         ) : products.length > 0 ? (
           products.map((product) => (
-            <div
+            <motion.div
               key={product.id}
               className="rounded-xl border shadow-xl p-4 w-full h-full group relative"
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="w-full flex items-center justify-between">
                 <button
@@ -234,7 +238,7 @@ const ProductList = ({ handleOpenModalDetail, handleOpenModalBuyProduct }) => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))
         ) : (
           <div className="grid place-items-center lg:mt-5 items-center gap-4 p-4 col-span-3">

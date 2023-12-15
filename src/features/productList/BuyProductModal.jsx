@@ -71,7 +71,7 @@ const BuyProductModal = ({ handleHideModalBuyProduct, isOpenBuy }) => {
             </p>
           </div>
           <div className="self-start">
-            <h3 className="text-lg font-bold text-green-500">
+            <h3 className="text-lg font-bold text-black">
               Price: ${" "}
               {buyProduct.price.toLocaleString("en-US", {
                 styles: "currency",

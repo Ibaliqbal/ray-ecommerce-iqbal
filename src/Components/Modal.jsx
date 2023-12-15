@@ -9,7 +9,7 @@ const BackdropOverlay = () => {
 
 const ModalOverlay = ({ children, isOpen }) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-screen flex items-end justify-center z-30">
+    <div className="fixed top-0 left-0 w-full h-screen flex items-end justify-center z-30 overflow-hidden">
       <div
         className={`bg-white p-4 rounded-lg shadow-lg text-gray-900 mx-2 scale-up-bottom`}
       >
