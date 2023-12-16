@@ -14,7 +14,7 @@ const Footer = () => {
             </a>
           </h1>
           <p>
-            Make it with <span className="animate-pulse">❤️</span>
+            Made with <span className="animate-pulse">❤️</span>
           </p>
         </div>
       </div>
